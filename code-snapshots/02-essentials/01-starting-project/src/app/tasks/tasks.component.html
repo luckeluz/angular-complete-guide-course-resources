@@ -1,5 +1,5 @@
 <section id="tasks">
-  @if (isAddingTask === false) {
+  @if (!isAddingTask) {
     <header>
       <h2>{{ userName }}'s Tasks</h2>
       <menu>
@@ -15,6 +15,6 @@
       }
     </ul>
   } @else {
-    <app-new-task (cancel)="onCancelAddTask($event)"/>
+    <app-new-task (cancel)="onCancelAddTask()" (add)="onAddTask($event)"/>
   }
 </section>
