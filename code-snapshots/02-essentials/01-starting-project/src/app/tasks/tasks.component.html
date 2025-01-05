@@ -1,16 +1,20 @@
 <section id="tasks">
-  <header>
-    <h2>{{ userName }}'s Tasks</h2>
-    <menu>
-      <button>Add Task</button>
-    </menu>
-  </header>
+  @if (isAddingTask === false) {
+    <header>
+      <h2>{{ userName }}'s Tasks</h2>
+      <menu>
+        <button (click)="onStartAddTask()">Add Task</button>
+      </menu>
+    </header>
 
-  <ul>
-    @for (task of selectedUserTasks; track task.id) {
-      <li>
-        <app-task [task]="task" (complete)="onCompleteTask($event)"/>
-      </li>
-    }
-  </ul>
+    <ul>
+      @for (task of selectedUserTasks; track task.id) {
+        <li>
+          <app-task [task]="task" (complete)="onCompleteTask($event)"/>
+        </li>
+      }
+    </ul>
+  } @else {
+    <app-new-task (cancel)="onCancelAddTask($event)"/>
+  }
 </section>
